@@ -1,4 +1,4 @@
-import Bingo from "./bingo.js";
+import Bingo from "./Bingo.js";
 
 export default class Card {
   constructor(title) {
