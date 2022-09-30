@@ -4,7 +4,7 @@ import Card from "./Card.js";
 export default class Bingo {
   constructor() {
     // the constructor is called when you create a new instance of the class
-    console.log("Welcome to Bingo! 🎉");
+    //console.log("Welcome to Bingo! 🎉");
 
     // an array including 25 cards (5x5)
     this.cards = [
@@ -44,13 +44,14 @@ export default class Bingo {
 
   renderCards() {
     // this function renders the cards to the screen
-    console.log("rendering cards");
+    //console.log("rendering cards");
 
     // 🔥🔥🔥 TODO 2
     // loop through all the cards in the array and create a new instance of a Card()
     for(var i=0; i<this.cards.length; i++) {
       let card = new Card(this.cards[i]);
       card.render(i);
+      
     }
     
     // create a new card object

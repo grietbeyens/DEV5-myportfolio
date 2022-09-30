@@ -1,3 +1,4 @@
+import Bingo from "./Bingo.js";
 export default class Card {
   constructor(title) {
     // the constructor is called when you create a new instance of the class
@@ -16,18 +17,23 @@ export default class Card {
   render(counter) {
     // rendering the card to the screen is done by building up a string of HTML
     // after that, we append the HTML to the DOM - check the index.html file to see what structure to use
-    console.log("Rendering card...");
+    //console.log("Rendering card...");
 
     // 🔥🔥🔥 TODO3: build the HTML element and append it to the DOM
-    // let card = document.createElement("div");
-    // card.dataset.number = counter + 1;
-    // don't forget to append the child to to DOM
+    let board = document.querySelector(".bingo__board");
+    let card = document.createElement("div");
+
+    card.dataset.number = counter + 1;
+    card.classList.add("bingo__card");
+    card.setAttribute("id", "bingo__card" + counter);
+    card.innerHTML = this.title;  
+    board.appendChild(card);
 
     // 🔥🔥🔥 TODO4: when we click an item, we want to check for winners and we want to save the selection to storage
     //card.addEventListener("click", (e) => {
-      // this.markDone(e.target);
-      // call checkWinner() on the Bingo class
-      // try to call the save() method on the Bingo class
+    // this.markDone(e.target);
+    // call checkWinner() on the Bingo class
+    // try to call the save() method on the Bingo class
     //});
   }
 }
