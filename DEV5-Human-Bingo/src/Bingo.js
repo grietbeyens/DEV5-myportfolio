@@ -68,7 +68,7 @@ export default class Bingo {
     // 🔥🔥🔥 TODO 6
     // count all cards that are marked as done (select done items and count them with .length)
     let cardsDone = document.querySelectorAll(".bingo__card--done");
-    if (cardsDone.length === 5 || cardsDone.length > 5) {
+    if (cardsDone.length === 5) {
       document.querySelector(".bingo__overlay").style.display = "block"; // show the animated gif to the winner
     }
   }
@@ -84,14 +84,13 @@ export default class Bingo {
     for (let i = 0; i < cards.length; i++) {
       cardsWon.push(cards[i].dataset.number);
     }
+
     localStorage.setItem("bingo", JSON.stringify(cardsWon));
 
     // if there are not done cards, remove localstorage
-    if (cards.length === 0) {
-    // remove localstorage
-    localStorage.removeItem("bingo");}
-
-    console.log(cardsWon);
+    if (cards.length === 0 || cards.length >= 5) {
+      localStorage.removeItem("bingo"); // remove localstorage
+    } 
 
     // save a selection like [1, 7, 8] to localstorage item "bingo"
     // you might want to check out how JSON.stringify() works
@@ -102,12 +101,17 @@ export default class Bingo {
     // load the cards that are done from localstorage
     // this works the other way around of the save function
     // load the saved string from localstorage and parse it as an array, then loop over it
-    console.log("loading bingo selection from localstorage");
+    //console.log("loading bingo selection from localstorage");
 
     // check if localstorage item exists
     if (localStorage.getItem("bingo")) {
-      // let cardsWon = JSON.parse();
-      // JSON.parse() will convert the string [1, 7, 8] back to an array which you can loop
+      let cardsWon = JSON.parse(localStorage.getItem("bingo"));
+      console.log(cardsWon);
+      for (let i = 0; i < cardsWon.length; i++) {
+        let doneCards = document.querySelector(`[data-number="${cardsWon[i]}"]`)
+        doneCards.classList.add("bingo__card--done");
+      }
+      //JSON.parse() will convert the string [1, 7, 8] back to an array which you can loop
       // loop over the numbers 1, 7, 8 and mark those cards as done by adding the right CSS class
       // .bingo__card--done
     }
