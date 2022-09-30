@@ -63,14 +63,13 @@ export default class Bingo {
 
   static checkWinner() {
     // a static function can be called without creating an instance of the class
-    console.log("Checking for a winner");
+    //console.log("Checking for a winner");
 
     // 🔥🔥🔥 TODO 6
     // count all cards that are marked as done (select done items and count them with .length)
     let cardsDone = document.querySelectorAll(".bingo__card--done");
     if (cardsDone.length === 5 || cardsDone.length > 5) {
-    // show the animated gif to the winner
-      document.querySelector(".bingo__overlay").style.display = "block";
+      document.querySelector(".bingo__overlay").style.display = "block"; // show the animated gif to the winner
     }
   }
 
@@ -81,12 +80,18 @@ export default class Bingo {
     // https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
     let cardsWon = [];
     console.log("Saving bingo to localstorage");
-    // let cards = document.querySelectorAll(".bingo__card--done");
+    let cards = document.querySelectorAll(".bingo__card--done");
+    for (let i = 0; i < cards.length; i++) {
+      cardsWon.push(cards[i].dataset.number);
+    }
+    localStorage.setItem("bingo", JSON.stringify(cardsWon));
 
     // if there are not done cards, remove localstorage
-    // if (cards.length === 0) {
+    if (cards.length === 0) {
     // remove localstorage
-    // }
+    localStorage.removeItem("bingo");}
+
+    console.log(cardsWon);
 
     // save a selection like [1, 7, 8] to localstorage item "bingo"
     // you might want to check out how JSON.stringify() works
