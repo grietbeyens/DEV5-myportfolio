@@ -30,10 +30,10 @@ export default class Card {
     board.appendChild(card);
 
     // 🔥🔥🔥 TODO4: when we click an item, we want to check for winners and we want to save the selection to storage
-    //card.addEventListener("click", (e) => {
-    // this.markDone(e.target);
-    // call checkWinner() on the Bingo class
-    // try to call the save() method on the Bingo class
-    //});
+    card.addEventListener("click", (e) => {
+      this.markDone(e.target);
+      Bingo.checkWinner(); // call checkWinner() on the Bingo class
+      Bingo.save(); // try to call the save() method on the Bingo class
+    });
   }
 }

@@ -44,7 +44,7 @@ export default class Bingo {
 
   renderCards() {
     // this function renders the cards to the screen
-    //console.log("rendering cards");
+    // console.log("rendering cards");
 
     // 🔥🔥🔥 TODO 2
     // loop through all the cards in the array and create a new instance of a Card()
