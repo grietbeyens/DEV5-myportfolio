@@ -1,0 +1,53 @@
+#app{
+  background-color: rgb(37, 36, 36);
+  color: rgb(255, 255, 255);
+  width: 280px;
+  height: 580px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 25px;
+  font-family: Arial, Helvetica, sans-serif;
+  
+}
+
+.title{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 20px;
+}
+
+.nasa__content{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo{
+  width: 150px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.clear{
+  font-size: 25px;
+  font-weight: lighter;
+}
+
+.cloudy{
+  font-size: 40px;
+}
+
+.container{
+  background-color: rgb(232, 221, 8);
+  width: 280px;
+  height: 580px;
+  padding: 20px;
+  border-radius: 25px;
+}
+
+
+
