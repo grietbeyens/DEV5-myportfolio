@@ -23,7 +23,8 @@ export default class Nasa {
         } else if (data.media_type === "video") {
         const video = document.createElement("iframe");
         video.src = data.url;
-        //video.classList.add(".nasa__video");
+        video.setAttribute("width", "300");
+        video.setAttribute("height", "300");
         document.querySelector(".nasa__content").appendChild(video);
         }
     }
