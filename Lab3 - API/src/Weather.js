@@ -18,7 +18,16 @@ export default class Weather {
 
     // get weather from local storage
     const weather = JSON.parse(localStorage.getItem("weather"));
+    console.log(weather);
     this.displayWeather(weather);
+  }
+
+  isClear() {
+    const weatherData = JSON.parse(localStorage.getItem("weather"));
+
+    if (weatherData.length < 1) return false;
+    if (weatherData.weather[0].main === "Clear") return true;
+    return false
   }
 
   getWeather() {
