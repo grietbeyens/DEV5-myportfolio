@@ -1,17 +1,18 @@
 export default class Nasa {
   constructor(api_key) {
     this.apiKey = api_key;
-    //  if (
-    //    localStorage.getItem("nasa") &&
-    //    Date.now() - localStorage.getItem("timestamp") < 60000
-    //  ) {
-    //    // get weather from local storage
-    //    const nasaData = JSON.parse(localStorage.getItem("weather"));
-    //    this.displayNasa(nasaData);
-    //    console.log("Cached nasa");
-    //  } else {
-    //    this.getNasa();
-    //  }
+    if (
+       localStorage.getItem("nasa") &&
+       Date.now() - localStorage.getItem("timestamp") < 60000
+     ) {
+       // get weather from local storage
+       const nasaData = JSON.parse(localStorage.getItem("nasa"));
+       //this.displayNasa(nasaData);
+       //console.log(nasaData);
+       console.log("Cached nasa");
+     } else {
+       this.getNasa();
+     }
     this.getNasa();
   }
 
@@ -20,12 +21,12 @@ export default class Nasa {
         fetch(url)
           .then((response) => response.json())
           .then((data) => {
-            console.log(data);
-            // //local storage string naar json en json naar string
-            // localStorage.setItem("nasa", JSON.stringify(data));
-            // // save timestamp
-            // localStorage.setItem("timestamp", Date.now());
-            this.displayNasa(data);
+            //console.log(data);
+            // local storage string naar json en json naar string
+            localStorage.setItem("nasa", JSON.stringify(data));
+            //  save timestamp
+            localStorage.setItem("timestamp", Date.now());
+            //this.displayNasa(data);
           });
 
     }
@@ -47,3 +48,11 @@ export default class Nasa {
 
 
 }
+
+
+/*
+In de constructor wel data ophalen en in uw localstorage steken maar niet verder gaan.
+DUS NIET DISPPLAY oproepen ergens in deze class
+maar in main nadat je weet wat je moet tonen
+
+*/
