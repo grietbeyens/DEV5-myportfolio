@@ -8,7 +8,7 @@ await weatherInstance.initializeWeather();
 const clearText = document.getElementById("clear");
 const cloudyText = document.getElementById("cloudy");
 
-if (!weatherInstance.isClear()) {
+if (weatherInstance.isClear()) {
   new Nasa("sbTPIuU0IrySPRwmnaUyumYTt8Ybb8tjWNatf91c");
   clearText.style.display = "block";
   cloudyText.style.display = "none";
