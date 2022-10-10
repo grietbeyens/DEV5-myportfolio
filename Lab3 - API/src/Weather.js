@@ -1,7 +1,10 @@
 export default class Weather {
   constructor(api_key) {
     this.apiKey = api_key;
+    this.position;
+  }
 
+  async initializeWeather() {
     // check if weather is in local storage
     if (
       localStorage.getItem("weather") &&
@@ -9,7 +12,7 @@ export default class Weather {
     ) {
       this.getWeatherFromCache();
     } else {
-      this.getWeather();
+      await this.getWeather();
     }
   }
 
@@ -27,36 +30,42 @@ export default class Weather {
 
     if (weatherData.length < 1) return false;
     if (weatherData.weather[0].main === "Clear") return true;
-    return false
+    return false;
   }
 
   getWeather() {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) =>
-        this.getWeatherFromApi(position)
-      );
+      return new Promise((resolve) => {
+        navigator.geolocation.getCurrentPosition((position) => {
+          this.setPosition(position);
+          resolve(this.getWeatherFromApi(this.position));
+        });
+      });
     } else {
-      console.log("Geolocation is not supported by this browser.");
+      return console.log("Geolocation is not supported by this browser.");
     }
   }
 
-  getWeatherFromApi(position) {
+  async setPosition(pos) {
+    this.position = pos;
+  }
+
+  async getWeatherFromApi(position) {
     console.log("Weather - From api");
 
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${this.apiKey}&units=metric`;
 
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        //local storage string naar json en json naar string
-        localStorage.setItem("weather", JSON.stringify(data));
-        // save timestamp
-        localStorage.setItem("timestamp", Date.now());
+    const response = await fetch(url);
+    const data = await response.json();
 
-        this.displayWeather(data);
-      });
+    //local storage string naar json en json naar string
+    localStorage.setItem("weather", JSON.stringify(data));
+    // save timestamp
+    localStorage.setItem("timestamp", Date.now());
+
+    this.displayWeather(data);
   }
 
   displayWeather(data) {
