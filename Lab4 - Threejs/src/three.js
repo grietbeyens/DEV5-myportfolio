@@ -19,16 +19,23 @@ new OrbitControls(camera, renderer.domElement);
 const light = new THREE.AmbientLight(0xffffff, 0.5);
 scene.add(light);
 
-const dire = new THREE.DirectionalLight(0xffffff, 2);
-dire.position.x = 1;
+const dire = new THREE.DirectionalLight(0xffffff, 1);
+dire.position.x = 4;
 dire.position.z = 1;
-dire.position.y = 1;
+dire.position.y = -4;
 scene.add(dire);
 
 //load texture
 const textureLoader = new THREE.TextureLoader();
 const sky = textureLoader.load("/public/textures/sky.jpg");
 const brick = textureLoader.load("/public/textures/brick.jpg");
+
+const sphereGeometry = new THREE.SphereGeometry(100, 32, 32);
+const sphereMaterial = new THREE.MeshStandardMaterial({ color: 0xffffff });
+sphereMaterial.map = sky;
+sphereMaterial.side = THREE.BackSide;
+const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+scene.add(sphere);
 
 //create house
 //create back wall out of planes
@@ -50,8 +57,7 @@ scene.add(wall2);
 
 //create floor out of plane
 const wall3Geometry = new THREE.BoxGeometry(1.1, 1.1, 0.1);
-const wall3Material = new THREE.MeshBasicMaterial({ color: 0xffffff });
-wall3Material.map = brick;
+const wall3Material = new THREE.MeshBasicMaterial({ color: 0x814329 });
 const wall3 = new THREE.Mesh(wall3Geometry, wall3Material);
 wall3.rotation.x = Math.PI / 2;
 wall3.position.set(0, -0.7, 0.45);
