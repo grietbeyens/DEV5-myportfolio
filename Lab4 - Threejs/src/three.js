@@ -1,5 +1,8 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import {FontLoader} from 'three/examples/jsm/loaders/FontLoader.js';
+import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry.js";
+
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
@@ -57,7 +60,7 @@ scene.add(wall2);
 
 //create floor out of plane
 const wall3Geometry = new THREE.BoxGeometry(1.1, 1.1, 0.1);
-const wall3Material = new THREE.MeshBasicMaterial({ color: 0x814329 });
+const wall3Material = new THREE.MeshBasicMaterial({ color: 0xaa5f40 });
 const wall3 = new THREE.Mesh(wall3Geometry, wall3Material);
 wall3.rotation.x = Math.PI / 2;
 wall3.position.set(0, -0.7, 0.45);
@@ -104,7 +107,30 @@ sideWall2.position.set(0.3, -0.35, 0.95);
 scene.add(sideWall2);
 
 
+//card
+const card = new THREE.PlaneGeometry(0.8, 0.3);
+const cardMaterial = new THREE.MeshBasicMaterial({ color: 0xfafafa });
+const cardMesh = new THREE.Mesh(card, cardMaterial);
+cardMesh.position.set(0, 0.25, 1.001);
+scene.add(cardMesh);
 
+//add text
+const loader = new FontLoader();
+loader.load("/public/fonts/coolvetica.json", function (font) {
+    const textGeometry = new TextGeometry("Griets crib", {
+        font: font,
+        size: 0.1,
+        height: 0.02,
+        curveSegments: 7,
+        bevelEnabled: false,
+    });
+    var mesh = new THREE.Mesh(textGeometry, [
+      new THREE.MeshPhongMaterial({ color: 0x303030 }),
+      new THREE.MeshPhongMaterial({ color: 0x808080 })
+    ]);
+    scene.add(mesh);
+    mesh.position.set(-0.3, 0.2, 1)
+});
 
 
 camera.position.z = 5;
