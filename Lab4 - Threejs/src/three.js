@@ -27,48 +27,66 @@ scene.add(dire);
 
 //create house
 //create back wall out of planes
-const wallGeometry = new THREE.PlaneGeometry(1, 1.3);
+const wallGeometry = new THREE.BoxGeometry(1.1, 1.3, 0.1);
 const wallMaterial = new THREE.MeshBasicMaterial({ color: 0xffff00 });
 const wall = new THREE.Mesh(wallGeometry, wallMaterial);
+wall.position.z = -0.05;
 scene.add(wall);
 
 //create roof out of plane
-const wall2Geometry = new THREE.PlaneGeometry(1, 1);
+const wall2Geometry = new THREE.BoxGeometry(1.1, 1.1, 0.1);
 const wall2Material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
 const wall2 = new THREE.Mesh(wall2Geometry, wall2Material);
 wall2.rotation.x = Math.PI / 2;
-wall2.position.y = 0.65;
-wall2.position.z = 0.5;
+wall2.position.set(0, 0.7, 0.45);
 scene.add(wall2);
 
 //create floor out of plane
-const wall3Geometry = new THREE.PlaneGeometry(1, 1);
+const wall3Geometry = new THREE.BoxGeometry(1.1, 1.1, 0.1);
 const wall3Material = new THREE.MeshBasicMaterial({ color: 0x00ffff });
 const wall3 = new THREE.Mesh(wall3Geometry, wall3Material);
 wall3.rotation.x = Math.PI / 2;
-wall3.position.y = -0.65;
-wall3.position.z = 0.5;
+wall3.position.set(0, -0.7, 0.45);
 scene.add(wall3);
 
 //create right wall out of plane
-const wall4Geometry = new THREE.PlaneGeometry(1, 1.3);
+const wall4Geometry = new THREE.BoxGeometry(1, 1.3, 0.1);
 const wall4Material = new THREE.MeshBasicMaterial({ color: 0xffffff });
 const wall4 = new THREE.Mesh(wall4Geometry, wall4Material);
 wall4.rotation.y = Math.PI / 2;
-wall4.position.x = 0.5;
-wall4.position.y = 0;
-wall4.position.z = 0.5;
+wall4.position.set(0.5, 0, 0.5);
 scene.add(wall4);
 
 //create left wall out of plane
-const wall5Geometry = new THREE.PlaneGeometry(1, 1.3);
+const wall5Geometry = new THREE.BoxGeometry(1, 1.3, 0.1);
 const wall5Material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
 const wall5 = new THREE.Mesh(wall5Geometry, wall5Material);
 wall5.rotation.y = Math.PI / 2;
-wall5.position.x = -0.5;
-wall5.position.y = 0;
-wall5.position.z = 0.5;
+wall5.position.set(-0.5, 0, 0.5);
 scene.add(wall5);
+
+//doorwall kindof (+ name?)
+const doorGeometry = new THREE.BoxGeometry(0.9, 0.7, 0.1);
+const doorMaterial = new THREE.MeshBasicMaterial({ color: 0x0000ff });
+const door = new THREE.Mesh(doorGeometry, doorMaterial);
+door.position.set(0, 0.3, 0.95);
+scene.add(door);
+
+const sideWallGeometry = new THREE.BoxGeometry(0.3, 0.6, 0.1);
+const sideWallMaterial = new THREE.MeshBasicMaterial({ color: 0x00f000 });
+const sideWall = new THREE.Mesh(sideWallGeometry, sideWallMaterial);
+sideWall.position.set(-0.30, -0.35, 0.95);
+scene.add(sideWall);
+
+const sideWall2Geometry = new THREE.BoxGeometry(0.3, 0.6, 0.1);
+const sideWall2Material = new THREE.MeshBasicMaterial({ color: 0x00f000 });
+const sideWall2 = new THREE.Mesh(sideWall2Geometry, sideWall2Material);
+sideWall2.position.set(0.3, -0.35, 0.95);
+scene.add(sideWall2);
+
+
+
+
 
 camera.position.z = 5;
 
