@@ -25,17 +25,24 @@ dire.position.z = 1;
 dire.position.y = 1;
 scene.add(dire);
 
+//load texture
+const textureLoader = new THREE.TextureLoader();
+const sky = textureLoader.load("/public/textures/sky.jpg");
+const brick = textureLoader.load("/public/textures/brick.jpg");
+
 //create house
 //create back wall out of planes
 const wallGeometry = new THREE.BoxGeometry(1.1, 1.3, 0.1);
-const wallMaterial = new THREE.MeshBasicMaterial({ color: 0xffff00 });
+const wallMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+wallMaterial.map = brick;
 const wall = new THREE.Mesh(wallGeometry, wallMaterial);
 wall.position.z = -0.05;
 scene.add(wall);
 
 //create roof out of plane
 const wall2Geometry = new THREE.BoxGeometry(1.1, 1.1, 0.1);
-const wall2Material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+const wall2Material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+wall2Material.map = brick;
 const wall2 = new THREE.Mesh(wall2Geometry, wall2Material);
 wall2.rotation.x = Math.PI / 2;
 wall2.position.set(0, 0.7, 0.45);
@@ -43,7 +50,8 @@ scene.add(wall2);
 
 //create floor out of plane
 const wall3Geometry = new THREE.BoxGeometry(1.1, 1.1, 0.1);
-const wall3Material = new THREE.MeshBasicMaterial({ color: 0x00ffff });
+const wall3Material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+wall3Material.map = brick;
 const wall3 = new THREE.Mesh(wall3Geometry, wall3Material);
 wall3.rotation.x = Math.PI / 2;
 wall3.position.set(0, -0.7, 0.45);
@@ -52,6 +60,7 @@ scene.add(wall3);
 //create right wall out of plane
 const wall4Geometry = new THREE.BoxGeometry(1, 1.3, 0.1);
 const wall4Material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+wall4Material.map = brick;
 const wall4 = new THREE.Mesh(wall4Geometry, wall4Material);
 wall4.rotation.y = Math.PI / 2;
 wall4.position.set(0.5, 0, 0.5);
@@ -59,27 +68,31 @@ scene.add(wall4);
 
 //create left wall out of plane
 const wall5Geometry = new THREE.BoxGeometry(1, 1.3, 0.1);
-const wall5Material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+const wall5Material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+wall5Material.map = brick;
 const wall5 = new THREE.Mesh(wall5Geometry, wall5Material);
 wall5.rotation.y = Math.PI / 2;
 wall5.position.set(-0.5, 0, 0.5);
 scene.add(wall5);
 
-//doorwall kindof (+ name?)
+//doorframe kindof (+ name?)
 const doorGeometry = new THREE.BoxGeometry(0.9, 0.7, 0.1);
-const doorMaterial = new THREE.MeshBasicMaterial({ color: 0x0000ff });
+const doorMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+doorMaterial.map = brick;
 const door = new THREE.Mesh(doorGeometry, doorMaterial);
 door.position.set(0, 0.3, 0.95);
 scene.add(door);
 
 const sideWallGeometry = new THREE.BoxGeometry(0.3, 0.6, 0.1);
-const sideWallMaterial = new THREE.MeshBasicMaterial({ color: 0x00f000 });
+const sideWallMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+sideWallMaterial.map = brick;
 const sideWall = new THREE.Mesh(sideWallGeometry, sideWallMaterial);
 sideWall.position.set(-0.30, -0.35, 0.95);
 scene.add(sideWall);
 
 const sideWall2Geometry = new THREE.BoxGeometry(0.3, 0.6, 0.1);
-const sideWall2Material = new THREE.MeshBasicMaterial({ color: 0x00f000 });
+const sideWall2Material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+sideWall2Material.map = brick;
 const sideWall2 = new THREE.Mesh(sideWall2Geometry, sideWall2Material);
 sideWall2.position.set(0.3, -0.35, 0.95);
 scene.add(sideWall2);
