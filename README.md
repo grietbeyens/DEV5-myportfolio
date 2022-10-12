@@ -33,5 +33,3 @@ console.log(entries);
 Goal of the app: Shows Nasa's picture of the day when the sky is clear
 
 Vercel: https://lab3-api-grietbeyens.vercel.app/
-
-Codesandbox with .dist file: https://codesandbox.io/s/urania-dist-4c000o
