@@ -30,8 +30,9 @@ scene.add(dire);
 
 //load texture
 const textureLoader = new THREE.TextureLoader();
-const sky = textureLoader.load("/public/textures/sky.jpg");
-const brick = textureLoader.load("/public/textures/brick.jpg");
+const sky = textureLoader.load("/textures/sky.jpg");
+const brick = textureLoader.load("/textures/brick.avif");
+const tile = textureLoader.load("/textures/dakpan.jpg");
 
 const sphereGeometry = new THREE.SphereGeometry(100, 32, 32);
 const sphereMaterial = new THREE.MeshStandardMaterial({ color: 0xffffff });
@@ -60,7 +61,7 @@ scene.add(wall2);
 
 //create floor out of plane
 const wall3Geometry = new THREE.BoxGeometry(1.1, 1.1, 0.1);
-const wall3Material = new THREE.MeshBasicMaterial({ color: 0xaa5f40 });
+const wall3Material = new THREE.MeshBasicMaterial({ color: 0x49251e });
 const wall3 = new THREE.Mesh(wall3Geometry, wall3Material);
 wall3.rotation.x = Math.PI / 2;
 wall3.position.set(0, -0.7, 0.45);
@@ -106,6 +107,14 @@ const sideWall2 = new THREE.Mesh(sideWall2Geometry, sideWall2Material);
 sideWall2.position.set(0.3, -0.35, 0.95);
 scene.add(sideWall2);
 
+//actual roof
+const roofGeometry = new THREE.ConeGeometry(1, 0.5, 4);
+const roofMaterial = new THREE.MeshBasicMaterial({ color: 0x1B2231 });
+const roof = new THREE.Mesh(roofGeometry, roofMaterial);
+roofMaterial.map = tile;
+roof.position.set(0, 1, 0.45);
+roof.rotation.y = Math.PI / 4;
+scene.add(roof);
 
 //card
 const card = new THREE.PlaneGeometry(0.8, 0.3);
@@ -116,8 +125,8 @@ scene.add(cardMesh);
 
 //add text
 const loader = new FontLoader();
-loader.load("/public/fonts/coolvetica.json", function (font) {
-    const textGeometry = new TextGeometry("Griets crib", {
+loader.load("/fonts/coolvetica.json", function (font) {
+    const textGeometry = new TextGeometry("Griet's crib", {
         font: font,
         size: 0.1,
         height: 0.02,
@@ -137,8 +146,6 @@ camera.position.z = 5;
 
 function animate() {
   requestAnimationFrame(animate);
-
-
   renderer.render(scene, camera);
 }
 
