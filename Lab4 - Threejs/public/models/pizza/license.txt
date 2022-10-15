@@ -1,0 +1,11 @@
+Model Information:
+* title:	Margherita Pizza
+* source:	https://sketchfab.com/3d-models/margherita-pizza-4c6f580df80c421a8fda20cdfffa715c
+* author:	Zios (https://sketchfab.com/Zios)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Margherita Pizza" (https://sketchfab.com/3d-models/margherita-pizza-4c6f580df80c421a8fda20cdfffa715c) by Zios (https://sketchfab.com/Zios) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
