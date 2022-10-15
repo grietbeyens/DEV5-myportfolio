@@ -1,9 +1,8 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
+import { FontLoader } from "three/examples/jsm/loaders/FontLoader.js";
 import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry.js";
-
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
@@ -34,7 +33,6 @@ const textureLoader = new THREE.TextureLoader();
 const sky = textureLoader.load("/textures/sky.jpg");
 const brick = textureLoader.load("/textures/brick.avif");
 const tile = textureLoader.load("/textures/dakpan.jpg");
-const chickenSkin = textureLoader.load("/models/chicken/textures/material_normal.png");
 
 //gltf loader
 const gltfLoader = new GLTFLoader();
@@ -103,7 +101,7 @@ const sideWallGeometry = new THREE.BoxGeometry(0.3, 0.6, 0.1);
 const sideWallMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
 sideWallMaterial.map = brick;
 const sideWall = new THREE.Mesh(sideWallGeometry, sideWallMaterial);
-sideWall.position.set(-0.30, -0.35, 0.95);
+sideWall.position.set(-0.3, -0.35, 0.95);
 scene.add(sideWall);
 
 const sideWall2Geometry = new THREE.BoxGeometry(0.3, 0.6, 0.1);
@@ -115,7 +113,7 @@ scene.add(sideWall2);
 
 //actual roof
 const roofGeometry = new THREE.ConeGeometry(1, 0.5, 4);
-const roofMaterial = new THREE.MeshBasicMaterial({ color: 0x1B2231 });
+const roofMaterial = new THREE.MeshBasicMaterial({ color: 0x1b2231 });
 const roof = new THREE.Mesh(roofGeometry, roofMaterial);
 roofMaterial.map = tile;
 roof.position.set(0, 1, 0.45);
@@ -132,42 +130,51 @@ scene.add(cardMesh);
 //add text
 const loader = new FontLoader();
 loader.load("/fonts/coolvetica.json", function (font) {
-    const textGeometry = new TextGeometry("Griet's crib", {
-        font: font,
-        size: 0.1,
-        height: 0.02,
-        curveSegments: 7,
-        bevelEnabled: false,
-    });
-    var mesh = new THREE.Mesh(textGeometry, [
-      new THREE.MeshPhongMaterial({ color: 0x303030 }),
-      new THREE.MeshPhongMaterial({ color: 0x808080 })
-    ]);
-    scene.add(mesh);
-    mesh.position.set(-0.3, 0.2, 1)
+  const textGeometry = new TextGeometry("Griet's crib", {
+    font: font,
+    size: 0.1,
+    height: 0.02,
+    curveSegments: 7,
+    bevelEnabled: false,
+  });
+  var mesh = new THREE.Mesh(textGeometry, [
+    new THREE.MeshPhongMaterial({ color: 0x303030 }),
+    new THREE.MeshPhongMaterial({ color: 0x808080 }),
+  ]);
+  scene.add(mesh);
+  mesh.position.set(-0.3, 0.2, 1);
 });
 
 //load chicken gltf
 let chicken;
 const addChicken = (x, y, z) => {
-gltfLoader.load("/models/chicken/scene.gltf", (gltf) => {
-  chicken = gltf.scene;  
-  chicken.scale.set(4, 4, 4);
-  chicken.position.set(x, y, z);
-  scene.add(chicken);
-});
+  gltfLoader.load("/models/chicken/scene.gltf", (gltf) => {
+    chicken = gltf.scene;
+    chicken.scale.set(4, 4, 4);
+    chicken.position.set(x, y, z);
+    scene.add(chicken);
+  });
 };
 //load duck
 let duck;
 const addDuck = (x, y, z) => {
+  gltfLoader.load("/models/duck/scene.gltf", (gltf) => {
+    duck = gltf.scene;
+    duck.position.set(x, y, z);
+    duck.scale.set(4, 4, 4);
+    scene.add(duck);
+  });
+};
+
+//duck in house
 gltfLoader.load("/models/duck/scene.gltf", (gltf) => {
-  duck = gltf.scene;  
-  duck.position.set(x, y, z);
-  duck.scale.set(4, 4, 4);
+  duck = gltf.scene;
+  duck.position.set(0.1, -0.67, 0.5);
+  duck.scale.set(1.5, 1.5, 1.5);
   scene.add(duck);
 });
-}; 
 
+//pizza
 let pizza;
 gltfLoader.load("/models/pizza/scene.gltf", (gltf) => {
   pizza = gltf.scene;
@@ -177,7 +184,7 @@ gltfLoader.load("/models/pizza/scene.gltf", (gltf) => {
 });
 
 // looping chicken
-for(let i = 0; i < 20; i++) {
+for (let i = 0; i < 20; i++) {
   let sign = Math.random() < 0.5 ? -1 : 1;
   const x = Math.random() * 30 * sign;
 
@@ -186,11 +193,11 @@ for(let i = 0; i < 20; i++) {
 
   sign = Math.random() < 0.5 ? -1 : 1;
   const z = Math.random() * 30 * sign;
-  addChicken(x,y,z);
-};
+  addChicken(x, y, z);
+}
 
 // looping duck in other random places
-for(let i = 0; i < 20; i++) {
+for (let i = 0; i < 20; i++) {
   let sign = Math.random() < 0.5 ? -1 : 1;
   const x = Math.random() * 20 * sign;
 
@@ -199,27 +206,31 @@ for(let i = 0; i < 20; i++) {
 
   sign = Math.random() < 0.5 ? -1 : 1;
   const z = Math.random() * 20 * sign;
-  addDuck(x,y,z);
-};
+  addDuck(x, y, z);
+}
 
 camera.position.x = 10;
-camera.position.z = 15
+camera.position.z = 15;
 camera.position.y = 10;
 
 function animate() {
   requestAnimationFrame(animate);
-camera.position.x -= 0.03;
-camera.position.z -= 0.02;
-camera.position.y -= 0.03;
-if(camera.position.x < 0) {
-  camera.position.x = 0;
-  camera.position.y = 0;
-  if(camera.position.z < 4) {
-  camera.position.z = 4;}
-}
-camera.lookAt(scene.position);
 
-renderer.render(scene, camera);
+  //if not orbit cotrolling
+
+  camera.position.x -= 0.03;
+  camera.position.z -= 0.02;
+  camera.position.y -= 0.03;
+  if (camera.position.x < 0) {
+    camera.position.x = 0;
+    camera.position.y = 0;
+    if (camera.position.z < 3) {
+      camera.position.z = 3;
+    }
+  }
+  camera.lookAt(scene.position);
+
+  renderer.render(scene, camera);
 }
 
 animate();
