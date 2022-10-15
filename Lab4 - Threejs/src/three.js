@@ -1,9 +1,10 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-import {FontLoader} from 'three/examples/jsm/loaders/FontLoader.js';
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
 import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry.js";
 
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
   75,
@@ -33,7 +34,12 @@ const textureLoader = new THREE.TextureLoader();
 const sky = textureLoader.load("/textures/sky.jpg");
 const brick = textureLoader.load("/textures/brick.avif");
 const tile = textureLoader.load("/textures/dakpan.jpg");
+const chickenSkin = textureLoader.load("/models/chicken/textures/material_normal.png");
 
+//gltf loader
+const gltfLoader = new GLTFLoader();
+
+//sky
 const sphereGeometry = new THREE.SphereGeometry(100, 32, 32);
 const sphereMaterial = new THREE.MeshStandardMaterial({ color: 0xffffff });
 sphereMaterial.map = sky;
@@ -141,6 +147,19 @@ loader.load("/fonts/coolvetica.json", function (font) {
     mesh.position.set(-0.3, 0.2, 1)
 });
 
+//load chicken gltf
+let chicken;
+gltfLoader.load("/models/chicken/scene.gltf", (gltf) => {
+  chicken = gltf.scene;  
+  // chicken.scale.set(1, 1, 1);
+  //color chicken
+  // chicken.traverse((o) => {
+  //   if (o.isMesh) {
+  //     // o.material.color.set(0x303030);
+  //     o.material.map = chickenSkin;
+  //   }});
+  scene.add(chicken);
+});
 
 camera.position.z = 5;
 
