@@ -1,0 +1,11 @@
+Model Information:
+* title:	pigeon  - 3dModel - Free
+* source:	https://sketchfab.com/3d-models/pigeon-3dmodel-free-e3ee02557a7d43a59ac030f5292aa2d3
+* author:	velvel (https://sketchfab.com/velvel)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "pigeon  - 3dModel - Free" (https://sketchfab.com/3d-models/pigeon-3dmodel-free-e3ee02557a7d43a59ac030f5292aa2d3) by velvel (https://sketchfab.com/velvel) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
