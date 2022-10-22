@@ -2,4 +2,10 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  p List of all messages 📨
+  img(src="https://media.giphy.com/media/UJS4fUKBaTc8o/giphy.gif", alt="harry potter")
+
+  ul
+    each message in messages
+      li= message
+
