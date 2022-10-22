@@ -6,7 +6,7 @@ const run = async () => {
   const responseData = await response.json();
   console.log("responseData", responseData);
   const messages = responseData.data.messages.map(
-    (message) => `<li>${message.user} - ${message.message}</li>`
+    (message) => `<li><span class="blue">${message.user}</span> - ${message.message}</li>`
   );
   messagesList.innerHTML = messages.join("");
 };
