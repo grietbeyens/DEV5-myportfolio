@@ -5,9 +5,10 @@ const run = async () => {
   const response = await fetch("/api/v1/messages");
   const responseData = await response.json();
   console.log("responseData", responseData);
-  messagesList.innerHTML = responseData.data.messages
-    .map((message) => `<li>${message}</li>`)
-    .join("");
+  const messages = responseData.data.messages.map(
+    (message) => `<li>${message.user} - ${message.message}</li>`
+  );
+  messagesList.innerHTML = messages.join("");
 };
 
 run();
