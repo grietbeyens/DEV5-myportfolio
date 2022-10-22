@@ -38,4 +38,29 @@ router.get("/:id", function (req, res, next) {
   res.json(getResponse);
 });
 
+router.post("/", function (req, res, next) {
+  const { message } = req.body; // const message = req.body.message;
+  console.log("message", message);
+  const newMessage = {
+    message: message.text,
+    user: message.user,
+  };
+  messages.push(newMessage);
+  const postResponse = {
+    message: `POSTING a new message for user ${message.user}`,
+  };
+  res.json(postResponse);
+});
+
+router.put("/:id", function (req, res, next) {
+  const { id } = req.params;
+  const body = req.body; // dit werkt enkel als er in de body de key 'user' en of 'message' zit
+  messages[id] = { ...messages[id], ...body }; // nieuwe text en user (=body) overschijft oude
+
+  const putResponse = {
+    message: `UPDATING a new message with id ${id}`,
+  };
+  res.json(putResponse);
+});
+
 module.exports = router;
