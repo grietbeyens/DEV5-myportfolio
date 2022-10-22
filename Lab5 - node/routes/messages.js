@@ -63,4 +63,13 @@ router.put("/:id", function (req, res, next) {
   res.json(putResponse);
 });
 
+router.delete("/:id", function (req, res, next) {
+    const { id } = req.params;
+    messages.splice(id, 1);
+    const deleteResponse = {
+        message: `DELETING a message with id ${id}`,
+    };
+    res.json(deleteResponse);
+});
+
 module.exports = router;
