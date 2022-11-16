@@ -1,8 +1,17 @@
 <script setup>
 import { onMounted, ref } from 'vue';
+let user = ref("");
+let text = ref("");
 
 onMounted(() => {
-    
+    const api_url = "https://lab5-p379.onrender.com/api/v1/messages/";
+    fetch(api_url)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data[0].text);
+            user.value = data[0].user;
+            text.value = data[0].text;
+        });
 });
 </script>
 
