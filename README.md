@@ -35,5 +35,11 @@ Goal of the app: Shows Nasa's picture of the day when the sky is clear
 Vercel: https://lab3-api-grietbeyens.vercel.app/
 
 
-## Lab 4 - Three.ja
+## Lab 4 - Three.js
 https://lab4-threejs-eight.vercel.app
+
+## LAB 5 - Node.js
+https://messages-t9bi.onrender.com/ (lukte niet in de api checker 🙁)
+
+## Lab 6 - Vue.js 
+https://lab6-vue-grietbeyens.vercel.app/
