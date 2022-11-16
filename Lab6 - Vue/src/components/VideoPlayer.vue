@@ -8,13 +8,11 @@ let animation = ref("");
 
 // onmounted
 onMounted(() => {
-    console.log("mounted");
     //fetch api
     let api_url = "http://127.0.0.1:5173/tiktok.json";
     fetch(api_url)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             src.value = data.videos[0].video;
             videos.videos = data.videos;
         });
@@ -27,7 +25,6 @@ const nextVideo = () => {
         src.value = videos.videos[1].video;
         animation.value = "animate__fadeIn";
     }, 1000);
-
 }
 
 </script>
@@ -50,15 +47,14 @@ video {
 
 .video {
     position: relative;
-    padding: 0 3em;
+    padding: 0 5em 0 3em;
 }
 
 .controls {
     text-decoration: none;
     position: absolute;
-    right: 2em;
+    right: 0.5em;
     top: 50%;
     font-size: 2em;
-
 }
 </style>
