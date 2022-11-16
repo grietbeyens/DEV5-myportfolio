@@ -46,18 +46,19 @@ const nextVideo = () => {
 video {
     max-width: 100%;
     max-height: 100%;
-    padding-left: 3em;
 }
 
 .video {
     position: relative;
+    padding: 0 3em;
 }
 
 .controls {
     text-decoration: none;
     position: absolute;
-    right: 3em;
+    right: 2em;
     top: 50%;
+    font-size: 2em;
 
 }
 </style>

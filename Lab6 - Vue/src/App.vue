@@ -7,16 +7,23 @@ import Chat from './components/Chat.vue';
 <template>
   <div class="app">
     <VideoPlayer />
-    <VideoDetails />
-    <Chat />
-    
+    <div class="details">
+      <VideoDetails />
+      <Chat />
+    </div>
   </div>
 </template>
 
 <style scoped>
 .app {
-  display: grid;
-  grid-template-columns: 8fr 4fr;
+  display: flex;
+  flex-direction: row;
+  padding-top: 3em;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
 }
 
 </style>

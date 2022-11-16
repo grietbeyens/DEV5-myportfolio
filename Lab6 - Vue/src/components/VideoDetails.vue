@@ -23,7 +23,7 @@ onMounted(() =>{
 </template>
 
 <style scoped>
-    .video__details {
-        padding: 1rem;
-    }
+.video__details{
+    padding-bottom: 3em;
+}
 </style>
