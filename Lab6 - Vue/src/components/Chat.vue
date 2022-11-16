@@ -1,16 +1,13 @@
 <script setup>
-import { onMounted, ref } from 'vue';
-let user = ref("");
-let text = ref("");
-
+import { onMounted, ref, reactive } from 'vue';
+let chats = reactive({ chats: [] });
 onMounted(() => {
     const api_url = "https://lab5-p379.onrender.com/api/v1/messages/";
     fetch(api_url)
         .then(response => response.json())
         .then(data => {
-            console.log(data[0].text);
-            user.value = data[0].user;
-            text.value = data[0].text;
+            chats.chats = data;
+            console.log(chats);
         });
 });
 </script>
@@ -18,6 +15,11 @@ onMounted(() => {
 <template>
     <div>
         <div class="chat">
+            <ul>
+                <li v-for="chat in chats.chats" :key="chats.id">
+                    {{chat.user}}: {{chat.text}}
+                </li>
+            </ul>
         </div>
        <div class="input-container">
             <input type="text" placeholder="Add comment">
